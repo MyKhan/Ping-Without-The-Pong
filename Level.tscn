@@ -1,0 +1,116 @@
+[gd_scene load_steps=12 format=3 uid="uid://biii1u5oa6qpx"]
+
+[ext_resource type="Script" path="res://Scenes/Level.cs" id="1_0ehsl"]
+[ext_resource type="Texture2D" uid="uid://mxnf4am5yq1k" path="res://Assets/Black.png" id="1_in4qf"]
+[ext_resource type="Texture2D" uid="uid://cyw64mrxbwjl6" path="res://Assets/White.png" id="2_hx4vu"]
+[ext_resource type="PackedScene" uid="uid://pu17ghx34weg" path="res://Scenes/ZeBall.tscn" id="3_05ple"]
+[ext_resource type="Script" path="res://Scenes/Player.cs" id="3_fl7w6"]
+[ext_resource type="PackedScene" uid="uid://nhvgvj8mk7j1" path="res://Scenes/Dead.tscn" id="3_x4hud"]
+[ext_resource type="Script" path="res://Scenes/Score.cs" id="6_p7j6l"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3f03a"]
+size = Vector2(1136.5, 648)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7jtit"]
+size = Vector2(13.7022, 667.848)
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_f555e"]
+friction = 0.0
+bounce = 1.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e6d0s"]
+size = Vector2(8, 95)
+
+[node name="Level" type="Node2D"]
+script = ExtResource("1_0ehsl")
+zeBall = ExtResource("3_05ple")
+deadScene = ExtResource("3_x4hud")
+
+[node name="Play Area" type="Area2D" parent="."]
+position = Vector2(567, 324)
+
+[node name="Black" type="Sprite2D" parent="Play Area"]
+position = Vector2(10, 2.08165e-12)
+scale = Vector2(0.81728, 0.463851)
+texture = ExtResource("1_in4qf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Play Area"]
+shape = SubResource("RectangleShape2D_3f03a")
+
+[node name="Enemy" type="StaticBody2D" parent="."]
+position = Vector2(1139, 325)
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Enemy"]
+position = Vector2(-0.25, -2.67029e-05)
+scale = Vector2(0.00956086, 0.463851)
+texture = ExtResource("2_hx4vu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy"]
+position = Vector2(-0.250122, 0)
+shape = SubResource("RectangleShape2D_7jtit")
+
+[node name="Invisible Walls" type="Node2D" parent="."]
+metadata/_edit_group_ = true
+
+[node name="Upper Invisible Wall" type="StaticBody2D" parent="Invisible Walls"]
+position = Vector2(576, -7)
+rotation = 1.5708
+scale = Vector2(1, 1.71)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Invisible Walls/Upper Invisible Wall"]
+position = Vector2(-0.250121, 6.42108)
+shape = SubResource("RectangleShape2D_7jtit")
+
+[node name="Lower Invisible Wall" type="StaticBody2D" parent="Invisible Walls"]
+position = Vector2(576, 655.55)
+rotation = 1.5708
+scale = Vector2(1, 1.71)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Invisible Walls/Lower Invisible Wall"]
+position = Vector2(-0.399048, 3.50296)
+shape = SubResource("RectangleShape2D_7jtit")
+
+[node name="ME" type="AnimatableBody2D" parent="."]
+position = Vector2(41.325, 287.43)
+physics_material_override = SubResource("PhysicsMaterial_f555e")
+script = ExtResource("3_fl7w6")
+
+[node name="Sprite2D" type="Sprite2D" parent="ME"]
+scale = Vector2(0.00566572, 0.0680029)
+texture = ExtResource("2_hx4vu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ME"]
+shape = SubResource("RectangleShape2D_e6d0s")
+
+[node name="Restart Timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="SpawnPositions" type="Node2D" parent="."]
+position = Vector2(517, 327)
+metadata/_edit_group_ = true
+
+[node name="ZeBallSpawnPosition1" type="Marker2D" parent="SpawnPositions"]
+position = Vector2(315, -150)
+
+[node name="ZeBallSpawnPosition2" type="Marker2D" parent="SpawnPositions"]
+position = Vector2(-296, 123)
+
+[node name="ZeBallSpawnPosition3" type="Marker2D" parent="SpawnPositions"]
+position = Vector2(517, 178)
+
+[node name="UI" type="Node" parent="."]
+
+[node name="Score" type="Label" parent="UI"]
+offset_left = 447.0
+offset_top = 621.0
+offset_right = 551.0
+offset_bottom = 644.0
+text = "Player Health Remaining:"
+script = ExtResource("6_p7j6l")
+
+[node name="Dead Timer" type="Timer" parent="."]
+
+[connection signal="timeout" from="Restart Timer" to="." method="_onRestartTimerTimeout"]

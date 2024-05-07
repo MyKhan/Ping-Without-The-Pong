@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://pu17ghx34weg"]
+
+[ext_resource type="Texture2D" uid="uid://cyw64mrxbwjl6" path="res://Assets/White.png" id="2_27ydv"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ucl2s"]
+friction = 0.0
+bounce = 4.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tl6l8"]
+radius = 3.0
+
+[node name="Ze Ball" type="RigidBody2D"]
+physics_material_override = SubResource("PhysicsMaterial_ucl2s")
+gravity_scale = 1.66533e-16
+continuous_cd = 2
+linear_velocity = Vector2(1500, 400)
+linear_damp_mode = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-0.00538093, -5.30481e-06)
+scale = Vector2(0.00424167, 0.00429491)
+texture = ExtResource("2_27ydv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.000437021, -3.57628e-05)
+shape = SubResource("CircleShape2D_tl6l8")

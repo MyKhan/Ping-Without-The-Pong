@@ -1,0 +1,38 @@
+[gd_scene load_steps=4 format=3 uid="uid://nhvgvj8mk7j1"]
+
+[ext_resource type="Script" path="res://Scenes/Dead.cs" id="1_jn2jm"]
+
+[sub_resource type="SystemFont" id="SystemFont_n3lsd"]
+font_names = PackedStringArray("Arial Black")
+font_weight = 425
+
+[sub_resource type="LabelSettings" id="LabelSettings_hyjl8"]
+font = SubResource("SystemFont_n3lsd")
+font_size = 100
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_jn2jm")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 1150.0
+offset_bottom = 646.0
+color = Color(0.101961, 0, 0, 1)
+
+[node name="Dead" type="Label" parent="."]
+layout_mode = 0
+offset_right = 1150.0
+offset_bottom = 648.0
+text = "HAHA YOU DEAD!"
+label_settings = SubResource("LabelSettings_hyjl8")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Dead Dead Timer" type="Timer" parent="."]
+wait_time = 5.0

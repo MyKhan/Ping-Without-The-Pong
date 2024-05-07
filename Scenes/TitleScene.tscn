@@ -1,0 +1,30 @@
+[gd_scene load_steps=3 format=3 uid="uid://bvp0rd3qkdg3o"]
+
+[ext_resource type="Script" path="res://Scenes/TitleScene.cs" id="1_eocfu"]
+[ext_resource type="PackedScene" uid="uid://biii1u5oa6qpx" path="res://Scenes/Level.tscn" id="2_1jtbh"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_eocfu")
+mainScene = ExtResource("2_1jtbh")
+
+[node name="Start" type="Button" parent="."]
+layout_mode = 0
+offset_left = 502.0
+offset_top = 205.0
+offset_right = 677.0
+offset_bottom = 236.0
+text = "Leeeeets PLAYYYYY!"
+
+[node name="Quit" type="Button" parent="."]
+layout_mode = 0
+offset_left = 505.0
+offset_top = 296.0
+offset_right = 680.915
+offset_bottom = 327.0
+text = "Quit..."
